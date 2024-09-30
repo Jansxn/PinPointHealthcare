@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Videos Section (Horizontally Scrollable) -->
+    <TextView
+        android:id="@+id/videosLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Videos by Nutrition Experts"
+        android:textSize="26sp"
+        android:textColor="#2260FF"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:paddingBottom="12dp"
+        android:fontFamily="@font/lato_black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- TextBox for Video Description -->
+    <TextView
+        android:id="@+id/videosDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Explore a variety of informative videos created by nutrition experts to help you on your dietary journey."
+        android:textSize="16sp"
+        android:textColor="#666666"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:fontFamily="@font/lato"
+        app:layout_constraintTop_toBottomOf="@id/videosLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Horizontal ScrollView for Video Thumbnails -->
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/videosDescription">
+
+        <LinearLayout
+            android:id="@+id/videosContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Example Video Thumbnail 1 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/videoThumbnail1"
+                    android:layout_width="120dp"
+                    android:layout_height="80dp"
+                    android:contentDescription="Video Thumbnail 1"
+                    android:scaleType="centerCrop"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Healthy Eating Tips"
+                    android:textSize="14sp"
+                    android:textColor="#6C8EFF"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+            <!-- Example Video Thumbnail 2 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/videoThumbnail2"
+                    android:layout_width="120dp"
+                    android:layout_height="80dp"
+                    android:contentDescription="Video Thumbnail 2"
+                    android:scaleType="centerCrop"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Workout Routines"
+                    android:textSize="14sp"
+                    android:textColor="#6C8EFF"
+                    android:textAlignment="center"
+                    />
+            </LinearLayout>
+
+            <!-- Example Video Thumbnail 3 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/videoThumbnail3"
+                    android:layout_width="120dp"
+                    android:layout_height="80dp"
+                    android:contentDescription="Video Thumbnail 3"
+                    android:scaleType="centerCrop"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Mental Health Tips"
+                    android:textSize="14sp"
+                    android:textColor="#6C8EFF"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+            <!-- Example Video Thumbnail 4 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/videoThumbnail4"
+                    android:layout_width="120dp"
+                    android:layout_height="80dp"
+                    android:contentDescription="Video Thumbnail 3"
+                    android:scaleType="centerCrop"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Mental Health Tips"
+                    android:textSize="14sp"
+                    android:textColor="#6C8EFF"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+            <!-- Add more thumbnails as needed -->
+
+        </LinearLayout>
+    </HorizontalScrollView>
+    <!-- View More Videos Button -->
+    <Button
+        android:id="@+id/viewMoreVideosButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="View More Videos"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#2260FF"
+        android:padding="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+</androidx.constraintlayout.widget.ConstraintLayout>

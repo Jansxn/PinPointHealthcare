@@ -1,0 +1,164 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity"
+    android:id="@+id/main">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Content Container -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="60dp"
+        >
+
+            <!-- Welcome Message -->
+            <TextView
+                android:id="@+id/welcomeMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/lato_black"
+                android:text="Welcome to Your Health App"
+                android:textAlignment="center"
+                android:textColor="#2260FF"
+                android:textSize="26sp" />
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="16dp"
+                android:background="#2260FF"
+                />
+
+            <!-- Include the Videos Section -->
+            <include
+                layout="@layout/main_videos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"/>
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="16dp"
+                android:background="#2260FF"
+                />
+
+
+
+            <include
+                layout="@layout/main_guidelines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"/>
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="16dp"
+                android:background="#2260FF"
+                />
+
+
+
+            <Button
+                android:id="@+id/miniEatButton"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:text="Track Diet (Mini-EAT Tool)"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#2260FF"
+                android:padding="12dp"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center"
+                android:textSize="20sp"/>
+
+            <View
+                android:id="@+id/divider4"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="16dp"
+                android:background="#2260FF"
+                />
+
+
+            <include
+                layout="@layout/main_steps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"/>
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="16dp"
+                android:background="#2260FF"
+                />
+
+
+
+
+            <include
+                layout="@layout/main_nicotine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"/>
+
+            <View
+                android:id="@+id/divider6"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="16dp"
+                android:background="#2260FF"
+                />
+
+
+
+
+            <include
+                layout="@layout/main_bmi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"/>
+
+            <View
+                android:id="@+id/divider7"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="16dp"
+                android:background="#2260FF"
+                />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+        <!-- Fixed Bottom Navigation View -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+    android:id="@+id/bottomNavigationView"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_gravity="bottom"
+    android:background="#2260FF"
+    android:gravity="center"
+    android:textAlignment="center"
+    android:textSize="12sp"
+    app:itemIconTint="#FFFFFF"
+    app:itemTextColor="#FFFFFF"
+    app:labelVisibilityMode="labeled"
+    app:menu="@menu/bottom_menu" />
+
+</FrameLayout>

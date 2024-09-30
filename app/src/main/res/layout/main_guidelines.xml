@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F9F9F9">
+
+    <TextView
+        android:id="@+id/guidelinesTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dietary Guidelines"
+        android:textSize="26sp"
+        android:textColor="#2260FF"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:paddingBottom="12dp"/>
+
+    <TextView
+        android:id="@+id/guidelinesDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Explore dietary guidelines based on recognized standards, including options for various diets."
+        android:textSize="16sp"
+        android:textColor="#666666"
+        android:paddingBottom="20dp"/>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="250dp"
+                android:layout_height="200dp"
+                android:layout_marginEnd="16dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <Button
+                        android:id="@+id/btn_vegetarian_guidelines"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="View Vegetarian Dietary Guidelines"
+                        android:textSize="16sp"
+                        android:backgroundTint="#2260FF"
+                        android:textColor="#FFFFFF"/>
+
+                    <TextView
+                        android:id="@+id/vegetarian_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu."
+                        android:textSize="14sp"
+                        android:textColor="#444444"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="250dp"
+                android:layout_height="200dp"
+                android:layout_marginEnd="16dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <Button
+                        android:id="@+id/btn_vegan_guidelines"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="View Vegan Dietary Guidelines"
+                        android:textSize="16sp"
+                        android:backgroundTint="#2260FF"
+                        android:textColor="#FFFFFF"/>
+
+                    <TextView
+                        android:id="@+id/vegan_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                        android:textSize="14sp"
+                        android:textColor="#444444"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="250dp"
+                android:layout_height="200dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <Button
+                        android:id="@+id/btn_indian_guidelines"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="View Indian Dietary Guidelines"
+                        android:textSize="16sp"
+                        android:backgroundTint="#2260FF"
+                        android:textColor="#FFFFFF"/>
+
+                    <TextView
+                        android:id="@+id/indian_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor."
+                        android:textSize="14sp"
+                        android:textColor="#444444"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</LinearLayout>

@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:elevation="2dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mini-EAT Dietary Assessment"
+            android:textSize="24sp"
+            android:textColor="#2260FF"
+            android:fontFamily="@font/lato_black"
+            android:layout_gravity="center"
+            android:paddingBottom="16dp" />
+
+        <!-- Question Template -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How often do you eat fresh fruits?"
+            android:textSize="16sp"
+            android:paddingTop="10dp"
+            android:fontFamily="@font/lato_bold" />
+
+        <RadioGroup
+            android:id="@+id/freshFruitsFrequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/freshFruits_daily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daily"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/freshFruits_weekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weekly"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/freshFruits_never"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Never"
+                android:textColor="#6C8EFF" />
+        </RadioGroup>
+
+        <!-- Repeat for Other Questions -->
+
+        <!-- Question 2: How often do you eat vegetables? -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How often do you eat vegetables?"
+            android:textSize="16sp"
+            android:paddingTop="10dp"
+            android:fontFamily="@font/lato_bold" />
+
+        <RadioGroup
+            android:id="@+id/vegetablesFrequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/vegetables_daily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daily"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/vegetables_weekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weekly"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/vegetables_never"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Never"
+                android:textColor="#6C8EFF" />
+        </RadioGroup>
+
+        <!-- Continue for other questions -->
+
+        <!-- Question 3: How often do you eat legumes, nuts, and seeds? -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How often do you eat legumes, nuts, and seeds?"
+            android:textSize="16sp"
+            android:paddingTop="10dp"
+            android:fontFamily="@font/lato_bold" />
+
+        <RadioGroup
+            android:id="@+id/legumesFrequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/legumes_daily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daily"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/legumes_weekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weekly"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/legumes_never"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Never"
+                android:textColor="#6C8EFF" />
+        </RadioGroup>
+
+        <!-- Question 4: How often do you eat fish or seafood? -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How often do you eat fish or seafood?"
+            android:textSize="16sp"
+            android:paddingTop="10dp"
+            android:fontFamily="@font/lato_bold" />
+
+        <RadioGroup
+            android:id="@+id/fishFrequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <RadioButton
+                android:id="@+id/fish_daily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daily"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/fish_weekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weekly"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/fish_never"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Never"
+                android:textColor="#6C8EFF" />
+        </RadioGroup>
+
+        <!-- Question 5: How often do you eat who grains? -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How often do you eat who grains?"
+            android:textSize="16sp"
+            android:paddingTop="10dp"
+            android:fontFamily="@font/lato_bold" />
+
+        <RadioGroup
+            android:id="@+id/whoGrainsFrequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/whoGrains_daily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daily"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/whoGrains_weekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weekly"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/whoGrains_never"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Never"
+                android:textColor="#6C8EFF" />
+        </RadioGroup>
+
+        <!-- Question 6: How often do you eat refined grains? -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How often do you eat refined grains?"
+            android:textSize="16sp"
+            android:paddingTop="10dp"
+            android:fontFamily="@font/lato_bold" />
+
+        <RadioGroup
+            android:id="@+id/refGrainsFrequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/refGrains_daily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daily"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/refGrains_weekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weekly"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/refGrains_never"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Never"
+                android:textColor="#6C8EFF" />
+        </RadioGroup>
+
+        <!-- Question 7: How often do you eat low-fat dairy products? -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How often do you eat low-fat dairy products?"
+            android:textSize="16sp"
+            android:paddingTop="10dp"
+            android:fontFamily="@font/lato_bold" />
+
+        <RadioGroup
+            android:id="@+id/lowDairyFrequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/lowDairy_daily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daily"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/lowDairy_weekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weekly"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/lowDairy_never"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Never"
+                android:textColor="#6C8EFF" />
+        </RadioGroup>
+
+        <!-- Question 8: How often do you eat high-fat dairy products and saturated fats? -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How often do you eat high-fat dairy products and saturated fats?"
+            android:textSize="16sp"
+            android:paddingTop="10dp"
+            android:fontFamily="@font/lato_bold" />
+
+        <RadioGroup
+            android:id="@+id/hiDairyFrequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/hiDairy_daily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daily"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/hiDairy_weekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weekly"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/hiDairy_never"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Never"
+                android:textColor="#6C8EFF" />
+        </RadioGroup>
+
+        <!-- Question 9: How often do you eat sweets and sweet foods? -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How often do you eat sweets and sweet foods?"
+            android:textSize="16sp"
+            android:paddingTop="10dp"
+            android:fontFamily="@font/lato_bold" />
+
+        <RadioGroup
+            android:id="@+id/sweetFrequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/sweet_daily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daily"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/sweet_weekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weekly"
+                android:textColor="#6C8EFF" />
+
+            <RadioButton
+                android:id="@+id/sweet_never"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Never"
+                android:textColor="#6C8EFF" />
+        </RadioGroup>
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/submitMiniEAT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:layout_marginTop="20dp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#2260FF"
+            android:padding="12dp" />
+
+    </LinearLayout>
+</ScrollView>

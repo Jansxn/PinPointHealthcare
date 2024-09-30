@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AssessmentActivity">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/assessmentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/lato_black"
+        android:text="Health Assessment"
+        android:textColor="#2260FF"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Weight Question -->
+    <TextView
+        android:id="@+id/weightQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="1. What is your current weight (in kg)?"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/assessmentTitle" />
+
+    <EditText
+        android:id="@+id/inputWeight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="50dp"
+        android:background="#ECF1FF"
+        android:gravity="center"
+        android:hint="Enter Weight"
+        android:inputType="numberDecimal"
+        android:padding="12dp"
+        android:textAlignment="textStart"
+        android:textColor="#6C8EFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weightQuestion" />
+
+    <!-- Height Question -->
+    <TextView
+        android:id="@+id/heightQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="2. What is your height (in cm)?"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputWeight" />
+
+    <EditText
+        android:id="@+id/inputHeight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="50dp"
+        android:background="#ECF1FF"
+        android:gravity="center"
+        android:hint="Enter Height"
+        android:inputType="numberDecimal"
+        android:padding="12dp"
+        android:textAlignment="textStart"
+        android:textColor="#6C8EFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heightQuestion" />
+
+    <!-- Energy Levels Question -->
+    <TextView
+        android:id="@+id/energyLevelsQuestion"
+        android:layout_width="358dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="3. How would you rate your energy levels in general?"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputHeight" />
+
+    <SeekBar
+        android:id="@+id/inputEnergyLevels"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:max="10"
+        android:progress="5"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/energyLevelsQuestion" />
+
+    <!-- Exercise Frequency Question -->
+    <TextView
+        android:id="@+id/exerciseFrequencyQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="4. How often do you exercise in a week?"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputEnergyLevels" />
+
+    <EditText
+        android:id="@+id/inputExerciseFrequency"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="50dp"
+        android:background="#ECF1FF"
+        android:gravity="center"
+        android:hint="Enter frequency (e.g., 3 times)"
+        android:inputType="number"
+        android:padding="12dp"
+        android:textAlignment="textStart"
+        android:textColor="#6C8EFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseFrequencyQuestion" />
+
+    <!-- Sleep Quality Question -->
+    <TextView
+        android:id="@+id/sleepQualityQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="5. How would you rate your sleep quality?"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputExerciseFrequency" />
+
+    <SeekBar
+        android:id="@+id/inputSleepQuality"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:max="10"
+        android:progress="5"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sleepQualityQuestion" />
+
+    <!-- Submit Button -->
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#2260FF"
+        android:text="Submit"
+        android:textSize="24sp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputSleepQuality" />
+
+    <!-- Bottom Navigation View -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="#2260FF"
+        android:textAlignment="center"
+        app:itemIconTint="#2260FF"
+        app:layout_constraintWidth_percent="0.85"
+        app:itemTextColor="#FFFFFF"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_menu"
+        android:gravity="center"
+        android:textSize="12sp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

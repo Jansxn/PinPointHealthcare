@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white"
+    android:elevation="4dp"
+    android:layout_margin="8dp">
+
+    <!-- Step Tracker Title -->
+    <TextView
+        android:id="@+id/stepTrackerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Physical Activity - Step Tracker"
+        android:textSize="22sp"
+        android:textColor="#2260FF"
+        android:textStyle="bold"
+        android:fontFamily="@font/lato_black"
+        android:layout_gravity="center"
+        android:paddingBottom="12dp" />
+
+    <!-- Step Count Display -->
+    <TextView
+        android:id="@+id/stepCountLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Steps Today"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:fontFamily="@font/lato_bold"
+        android:layout_gravity="center"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp" />
+
+    <!-- Current Step Count -->
+    <TextView
+        android:id="@+id/currentStepCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="48sp"
+        android:textColor="#4CAF50"
+        android:fontFamily="@font/lato_bold"
+        android:layout_gravity="center"
+        android:paddingBottom="16dp" />
+
+    <!-- Progress Bar for Step Count -->
+    <ProgressBar
+        android:id="@+id/stepProgressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:max="10000"
+        android:progress="0"
+        android:progressTint="#4CAF50"
+        android:layout_gravity="center" />
+
+    <!-- Step Goal Display -->
+    <TextView
+        android:id="@+id/stepGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Goal: 10,000 steps"
+        android:textSize="14sp"
+        android:textColor="#7B7B7B"
+        android:layout_gravity="center"
+        android:paddingTop="8dp" />
+
+    <!-- Button to Refresh Step Count -->
+    <Button
+        android:id="@+id/refreshStepCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refresh Step Count"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#2260FF"
+        android:layout_marginTop="16dp"
+        android:padding="12dp"
+        android:layout_gravity="center" />
+</LinearLayout>
