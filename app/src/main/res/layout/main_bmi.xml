@@ -39,7 +39,6 @@
         android:hint="e.g., 170"
         android:inputType="numberDecimal"
         android:padding="10dp"
-        android:background="@drawable/edit_text_background"
         android:layout_marginBottom="8dp"/>
 
     <!-- Input Field for Weight -->
@@ -60,7 +59,6 @@
         android:hint="e.g., 65"
         android:inputType="numberDecimal"
         android:padding="10dp"
-        android:background="@drawable/edit_text_background"
         android:layout_marginBottom="8dp"/>
 
     <LinearLayout

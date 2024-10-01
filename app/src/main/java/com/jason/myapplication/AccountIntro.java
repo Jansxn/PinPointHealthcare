@@ -4,13 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-public class account_intro extends AppCompatActivity {
+public class AccountIntro extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,12 +17,12 @@ public class account_intro extends AppCompatActivity {
         Button signUp = findViewById(R.id.signUp);
 
         logIn.setOnClickListener(v -> {
-            startActivity(new Intent(this, login.class));
+            startActivity(new Intent(this, Login.class));
             finish();
         });
 
         signUp.setOnClickListener(v -> {
-            startActivity(new Intent(this, signup.class));
+            startActivity(new Intent(this, Signup.class));
             finish();
         });
     }
