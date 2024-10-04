@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity"
+    tools:context=".MainActivity"
     android:id="@+id/main">
 
     <ScrollView
@@ -41,8 +41,9 @@
                 />
 
             <!-- Include the Videos Section -->
-            <include
-                layout="@layout/main_videos"
+            <androidx.fragment.app.FragmentContainerView
+                android:name="com.jason.myapplication.MainVideos"
+                android:id="@+id/fragmentVideos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"/>
@@ -57,8 +58,10 @@
 
 
 
-            <include
-                layout="@layout/main_guidelines"
+            <!-- Include the Videos Section -->
+            <androidx.fragment.app.FragmentContainerView
+                android:name="com.jason.myapplication.MainGuidelines"
+                android:id="@+id/fragmentGuidelines"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"/>
@@ -73,57 +76,57 @@
 
 
 
-            <Button
-                android:id="@+id/miniEatButton"
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
-                android:text="Track Diet (Mini-EAT Tool)"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#2260FF"
-                android:padding="12dp"
-                android:layout_marginTop="16dp"
-                android:layout_gravity="center"
-                android:textSize="20sp"/>
+<!--            <Button-->
+<!--                android:id="@+id/miniEatButton"-->
+<!--                android:layout_width="330dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Track Diet (Mini-EAT Tool)"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:backgroundTint="#2260FF"-->
+<!--                android:padding="12dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:textSize="20sp"/>-->
 
-            <View
-                android:id="@+id/divider4"
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_marginTop="16dp"
-                android:background="#2260FF"
-                />
-
-
-            <include
-                layout="@layout/main_steps"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"/>
-
-            <View
-                android:id="@+id/divider5"
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_marginTop="16dp"
-                android:background="#2260FF"
-                />
+<!--            <View-->
+<!--                android:id="@+id/divider4"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="5dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:background="#2260FF"-->
+<!--                />-->
 
 
+<!--            <include-->
+<!--                layout="@layout/main_steps"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"/>-->
+
+<!--            <View-->
+<!--                android:id="@+id/divider5"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="5dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:background="#2260FF"-->
+<!--                />-->
 
 
-            <include
-                layout="@layout/main_nicotine"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"/>
 
-            <View
-                android:id="@+id/divider6"
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_marginTop="16dp"
-                android:background="#2260FF"
-                />
+
+<!--            <include-->
+<!--                layout="@layout/main_nicotine"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"/>-->
+
+<!--            <View-->
+<!--                android:id="@+id/divider6"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="5dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:background="#2260FF"-->
+<!--                />-->
 
 
 

@@ -65,6 +65,9 @@
                 android:layout_marginEnd="10dp"
                 android:orientation="vertical"
                 android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/vid1"
                 >
 
                 <ImageView
@@ -91,7 +94,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:orientation="vertical"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/vid2">
 
                 <ImageView
                     android:id="@+id/videoThumbnail2"
@@ -118,7 +124,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:orientation="vertical"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/vid3">
 
                 <ImageView
                     android:id="@+id/videoThumbnail3"
@@ -144,7 +153,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:orientation="vertical"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/vid4">
 
                 <ImageView
                     android:id="@+id/videoThumbnail4"

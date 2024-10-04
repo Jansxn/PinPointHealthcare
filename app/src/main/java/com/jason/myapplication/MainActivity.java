@@ -23,8 +23,6 @@ public class MainActivity extends AppCompatActivity {
         checkLoginStatus();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-
-        // Use addOnNavigationItemSelectedListener
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.menu_home) {// Already in MainActivity, do nothing or handle as needed

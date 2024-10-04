@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Profile extends AppCompatActivity {
@@ -18,9 +19,38 @@ public class Profile extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        //Edit Profile
+
+
+        //Edit Medicine Info
+
+
+        //Assessment
+
+
+        //Logout
         Button logoutButton = findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(v -> {
             logoutUser();
+        });
+
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        // Use addOnNavigationItemSelectedListener
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.menu_home) {
+                Intent profileIntent = new Intent(Profile.this, MainActivity.class);
+                startActivity(profileIntent);
+                return true;
+            } else if (itemId == R.id.menu_assessment) {
+                Intent assessmentIntent = new Intent(Profile.this, Assessment.class);
+                startActivity(assessmentIntent);
+                return true;
+            } else if (itemId == R.id.menu_profile) {
+                return true;
+            }
+            return false;
         });
     }
 

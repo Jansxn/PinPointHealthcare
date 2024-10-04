@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <!-- Vegetarian Dietary Guidelines -->
             <androidx.cardview.widget.CardView
                 android:layout_width="250dp"
                 android:layout_height="200dp"
@@ -64,13 +65,14 @@
                         android:id="@+id/vegetarian_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu."
+                        android:text="Ensure a balance of cereals, pulses, fruits, and vegetables. Include milk and dairy products. Avoid excessive fried and processed foods."
                         android:textSize="14sp"
                         android:textColor="#444444"
                         android:layout_marginTop="8dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <!-- Vegan Dietary Guidelines -->
             <androidx.cardview.widget.CardView
                 android:layout_width="250dp"
                 android:layout_height="200dp"
@@ -97,13 +99,14 @@
                         android:id="@+id/vegan_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                        android:text="Include legumes, grains, nuts, seeds, and fruits for proper nutrition. Ensure a source of B12, calcium, and omega-3 from plant-based supplements or fortified foods."
                         android:textSize="14sp"
                         android:textColor="#444444"
                         android:layout_marginTop="8dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <!-- Indian Dietary Guidelines -->
             <androidx.cardview.widget.CardView
                 android:layout_width="250dp"
                 android:layout_height="200dp"
@@ -129,7 +132,7 @@
                         android:id="@+id/indian_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor."
+                        android:text="Follow a balanced diet rich in grains, pulses, fruits, and vegetables. Include sources of protein like lentils, dairy, and eggs. Limit refined sugar and oil."
                         android:textSize="14sp"
                         android:textColor="#444444"
                         android:layout_marginTop="8dp"/>
@@ -137,6 +140,7 @@
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>
+
     </HorizontalScrollView>
 
 </LinearLayout>
