@@ -51,12 +51,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
             <Button
-                android:id="@+id/medicineReminderButton"
+                android:id="@+id/callContactButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="#ECF1FF"
-                android:text="Edit Medicine Reminder Details"
+                android:text="Call Emergency Contact"
                 android:textColor="#2260FF"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +75,7 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/medicineReminderButton" />
+                app:layout_constraintTop_toBottomOf="@+id/callContactButton" />
 
             <!-- Logout Button -->
             <Button

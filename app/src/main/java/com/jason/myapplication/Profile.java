@@ -20,9 +20,13 @@ public class Profile extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         //Edit Profile
+        Button editProfile = findViewById(R.id.editProfileButton);
+        editProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(Profile.this, EditProfile.class);
+            startActivity(intent);
+        });
 
-
-        //Edit Medicine Info
+        //Call Emergency Contact
 
 
         //Assessment
