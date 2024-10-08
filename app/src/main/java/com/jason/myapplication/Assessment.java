@@ -1,23 +1,18 @@
 package com.jason.myapplication;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class Assessment extends AppCompatActivity {
 
@@ -25,19 +20,18 @@ public class Assessment extends AppCompatActivity {
     private EditText inputWeight, inputHeight, inputExerciseFrequency;
     private SeekBar inputEnergyLevels, inputSleepQuality;
     private Button submitButton;
+    private TextView resultWeight, resultHeight, resultExerciseFrequency, resultEnergyLevels, resultSleepQuality;
 
-    // Firebase instances
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore db;
+    // SQLite Database instance
+    private DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment);
 
-        // Initialize Firebase Auth and Firestore
-        mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
+        // Initialize SQLite helper
+        dbHelper = new DatabaseHelper(this);
 
         // Initialize UI elements
         inputWeight = findViewById(R.id.inputWeight);
@@ -46,18 +40,14 @@ public class Assessment extends AppCompatActivity {
         inputEnergyLevels = findViewById(R.id.inputEnergyLevels);
         inputSleepQuality = findViewById(R.id.inputSleepQuality);
         submitButton = findViewById(R.id.submitButton);
-
-        // Set default progress for SeekBars
-        inputEnergyLevels.setProgress(5);
-        inputSleepQuality.setProgress(5);
+        resultWeight = findViewById(R.id.resultWeight);
+//        resultHeight = findViewById(R.id.resultHeight);
+        resultExerciseFrequency = findViewById(R.id.resultExerciseFrequency);
+        resultEnergyLevels = findViewById(R.id.resultEnergyLevels);
+        resultSleepQuality = findViewById(R.id.resultSleepQuality);
 
         // Set up the submit button click listener
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                handleSubmit();
-            }
-        });
+        submitButton.setOnClickListener(v -> handleSubmit());
 
         // Bottom Navigation setup
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -90,39 +80,95 @@ public class Assessment extends AppCompatActivity {
             return;
         }
 
-        // Validate if height and weight inputs are valid numbers
         try {
             float weightValue = Float.parseFloat(weight);
             float heightValue = Float.parseFloat(height);
 
-            // Get current authenticated user
-            FirebaseUser user = mAuth.getCurrentUser();
-            if (user != null) {
-                // Create a map to store the assessment details
-                Map<String, Object> assessmentData = new HashMap<>();
-                assessmentData.put("weight", weightValue);
-                assessmentData.put("height", heightValue);
-                assessmentData.put("exerciseFrequency", exerciseFrequency);
-                assessmentData.put("energyLevels", energyLevels);
-                assessmentData.put("sleepQuality", sleepQuality);
-                assessmentData.put("userId", user.getUid());  // Add user ID to the data
+            // Compare with the last assessment
+            compareAssessments(weightValue, heightValue, exerciseFrequency, energyLevels, sleepQuality);
 
-                // Save assessment data to Firestore
-                db.collection("Assessments")
-                        .document(user.getUid())  // Use user's UID as document ID
-                        .set(assessmentData)
-                        .addOnSuccessListener(aVoid -> {
-                            Toast.makeText(Assessment.this, "Assessment saved successfully", Toast.LENGTH_LONG).show();
-                        })
-                        .addOnFailureListener(e -> {
-                            Toast.makeText(Assessment.this, "Error saving assessment: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                        });
-            } else {
-                Toast.makeText(Assessment.this, "User not authenticated", Toast.LENGTH_SHORT).show();
-            }
+            // Insert new assessment into SQLite database
+            dbHelper.insertAssessment(weightValue, heightValue, exerciseFrequency, energyLevels, sleepQuality);
+
+            Toast.makeText(Assessment.this, "Assessment saved successfully", Toast.LENGTH_LONG).show();
+
         } catch (NumberFormatException e) {
-            // Handle the case when height or weight are not valid numbers
-            Toast.makeText(Assessment.this, "Please enter valid numbers for height and weight", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Assessment.this, "Please enter valid numbers for weight and height", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void compareAssessments(float currentWeight, float currentHeight, String currentExerciseFrequency, int currentEnergyLevels, int currentSleepQuality) {
+        Cursor cursor = dbHelper.getLastAssessment();
+
+        if (cursor != null && cursor.moveToFirst()) {
+            // Verify column names from the cursor for debugging (optional)
+            String[] columnNames = cursor.getColumnNames();
+            for (String column : columnNames) {
+                System.out.println("Column: " + column);  // Log the columns to check their names
+            }
+
+            // Retrieve the last assessment values, ensuring correct column names are used
+            int weightIndex = cursor.getColumnIndex("weight");
+            int heightIndex = cursor.getColumnIndex("height");
+            int exerciseFrequencyIndex = cursor.getColumnIndex("exerciseFrequency");
+            int energyLevelsIndex = cursor.getColumnIndex("energyLevels");
+            int sleepQuality = cursor.getColumnIndex("sleepQuality");
+
+            // Check if columns exist in the cursor (getColumnIndex returns -1 if the column is not found)
+            if (weightIndex >= 0 && heightIndex >= 0 && exerciseFrequencyIndex >= 0 && energyLevelsIndex >= 0) {
+                float lastWeight = cursor.getFloat(weightIndex);
+                float lastHeight = cursor.getFloat(heightIndex);
+                String lastExerciseFrequency = cursor.getString(exerciseFrequencyIndex);
+                int lastSleep = cursor.getInt(sleepQuality);
+                int lastEnergyLevels = cursor.getInt(energyLevelsIndex);
+
+                // Check for improvements
+                String weightImprovement;
+                if (currentWeight < lastWeight) {
+                    weightImprovement = "You have improved your weight by " + (lastWeight - currentWeight) + " kg!";
+                    resultWeight.setTextColor(ContextCompat.getColor(this, R.color.green));
+                } else {
+                    weightImprovement = "No improvement in weight.";
+                    resultWeight.setTextColor(ContextCompat.getColor(this, R.color.red));
+                }
+
+                if (Integer.parseInt(currentExerciseFrequency) > Integer.parseInt(lastExerciseFrequency)) {
+                    resultExerciseFrequency.setText("Exercise Frequency has improved");
+                    resultExerciseFrequency.setTextColor(ContextCompat.getColor(this, R.color.green));
+                }
+                else {
+                    resultExerciseFrequency.setText("Exercise Frequency has worsened");
+                    resultExerciseFrequency.setTextColor(ContextCompat.getColor(this, R.color.red));
+                }
+
+                if (currentSleepQuality > lastSleep){
+                    resultSleepQuality.setText("Sleep Quality has improved");
+                    resultSleepQuality.setTextColor(ContextCompat.getColor(this, R.color.green));
+                }
+                else {
+                    resultSleepQuality.setText("Sleep Quality has not improved ");
+                    resultSleepQuality.setTextColor(ContextCompat.getColor(this, R.color.red));
+                }
+
+                // Update result TextViews
+                resultWeight.setText("Weight: " + currentWeight + " kg (" + weightImprovement + ")");
+
+                // Check for energy level improvement
+                if (currentEnergyLevels > lastEnergyLevels) {
+                    resultEnergyLevels.setText("Energy levels have improved!");
+                    resultEnergyLevels.setTextColor(ContextCompat.getColor(this, R.color.green));
+                } else {
+                    resultEnergyLevels.setText("No improvement in energy levels.");
+                    resultEnergyLevels.setTextColor(ContextCompat.getColor(this, R.color.red));
+                }
+            } else {
+                resultEnergyLevels.setText("Error: One or more columns are missing.");
+            }
+
+            cursor.close();
+        } else {
+            resultEnergyLevels.setText("No previous assessment data found.");
+        }
+    }
+
 }
