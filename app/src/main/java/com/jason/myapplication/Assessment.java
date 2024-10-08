@@ -178,7 +178,6 @@ public class Assessment extends AppCompatActivity {
         });
     }
 
-    // Method to handle the submission logic and save data in Firestore
     private void handleSubmit() {
         // Retrieve inputs from EditTexts and SeekBars
         String weight = inputWeight.getText().toString();
@@ -208,6 +207,7 @@ public class Assessment extends AppCompatActivity {
                 assessmentData.put("exerciseFrequency", exerciseFrequency);
                 assessmentData.put("energyLevels", energyLevels);
                 assessmentData.put("sleepQuality", sleepQuality);
+                assessmentData.put("userId", user.getUid());  // Add user ID to the data
 
                 // Save assessment data to Firestore
                 db.collection("Assessments")
