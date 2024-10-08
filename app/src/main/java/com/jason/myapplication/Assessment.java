@@ -2,26 +2,46 @@ package com.jason.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Assessment extends AppCompatActivity {
 
+    // Declare UI elements
+    private EditText inputWeight, inputHeight, inputExerciseFrequency;
+    private SeekBar inputEnergyLevels, inputSleepQuality;
+    private Button submitButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_assessment);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        // Initialize UI elements
+        inputWeight = findViewById(R.id.inputWeight);
+        inputHeight = findViewById(R.id.inputHeight);
+        inputExerciseFrequency = findViewById(R.id.inputExerciseFrequency);
+        inputEnergyLevels = findViewById(R.id.inputEnergyLevels);
+        inputSleepQuality = findViewById(R.id.inputSleepQuality);
+        submitButton = findViewById(R.id.submitButton);
+
+        // Set default progress for SeekBars
+        inputEnergyLevels.setProgress(5);
+        inputSleepQuality.setProgress(5);
+
+        // Set up the submit button click listener
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleSubmit();
+            }
         });
 
 
@@ -42,5 +62,41 @@ public class Assessment extends AppCompatActivity {
             }
             return false;
         });
+    }
+
+    // Method to handle the submission logic
+    private void handleSubmit() {
+        // Retrieve inputs from EditTexts and SeekBars
+        String weight = inputWeight.getText().toString();
+        String height = inputHeight.getText().toString();
+        String exerciseFrequency = inputExerciseFrequency.getText().toString();
+        int energyLevels = inputEnergyLevels.getProgress();
+        int sleepQuality = inputSleepQuality.getProgress();
+
+        // Validate inputs
+        if (weight.isEmpty() || height.isEmpty() || exerciseFrequency.isEmpty()) {
+            Toast.makeText(Assessment.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Validate if height and weight inputs are valid numbers
+        try {
+            float weightValue = Float.parseFloat(weight);
+            float heightValue = Float.parseFloat(height);
+
+            // Proceed with further logic, e.g., calculations or sending data
+            String summary = "Weight: " + weightValue + " kg\n" +
+                    "Height: " + heightValue + " cm\n" +
+                    "Exercise Frequency: " + exerciseFrequency + " times/week\n" +
+                    "Energy Levels: " + energyLevels + "/10\n" +
+                    "Sleep Quality: " + sleepQuality + "/10";
+
+            // Show a confirmation Toast with the assessment summary
+            Toast.makeText(Assessment.this, "Assessment Submitted:\n" + summary, Toast.LENGTH_LONG).show();
+
+        } catch (NumberFormatException e) {
+            // Handle the case when height or weight are not valid numbers
+            Toast.makeText(Assessment.this, "Please enter valid numbers for height and weight", Toast.LENGTH_SHORT).show();
+        }
     }
 }
