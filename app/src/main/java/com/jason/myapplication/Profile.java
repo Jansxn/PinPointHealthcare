@@ -2,6 +2,7 @@ package com.jason.myapplication;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,15 +16,13 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class Profile extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private static final int REQUEST_CALL_PERMISSION = 1;
     private String emergencyContactNumber;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,27 +31,15 @@ public class Profile extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        // Get Emergency Contact from Firebase Database
-        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("Users")  // Correct the case here
-                .child(mAuth.getCurrentUser().getUid()).child("emergencyContact");
+        // Initialize SharedPreferences
+        sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
 
-        // Listen for changes to the emergency contact
-        databaseRef.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    emergencyContactNumber = dataSnapshot.getValue(String.class);
-                } else {
-                    Toast.makeText(Profile.this, "No emergency contact found", Toast.LENGTH_SHORT).show();
-                }
-            }
+        // Get Emergency Contact from SharedPreferences
+        emergencyContactNumber = sharedPreferences.getString("emergencyContact", null);
 
-            @Override
-            public void onCancelled(@NonNull com.google.firebase.database.DatabaseError databaseError) {
-                Toast.makeText(Profile.this, "Error fetching emergency contact", Toast.LENGTH_SHORT).show();
-            }
-        });
-
+        if (emergencyContactNumber == null) {
+            Toast.makeText(Profile.this, "No emergency contact found", Toast.LENGTH_SHORT).show();
+        }
 
         // Edit Profile
         Button editProfile = findViewById(R.id.editProfileButton);

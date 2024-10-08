@@ -3,6 +3,7 @@ package com.jason.myapplication;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ public class EditProfile extends AppCompatActivity {
     private StorageReference storageReference;
     private Uri imageUri;
     private final int PICK_IMAGE_REQUEST = 71;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,9 @@ public class EditProfile extends AppCompatActivity {
         profilePictureImageView = findViewById(R.id.profilePicture);
         saveButton = findViewById(R.id.btnSaveChanges);
         changePictureButton = findViewById(R.id.changeProfilePictureButton);
+
+        // Initialize SharedPreferences
+        sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
 
         // Load current user details
         loadUserDetails();
@@ -199,6 +204,10 @@ public class EditProfile extends AppCompatActivity {
 
             if (!TextUtils.isEmpty(emergencyContact)) {
                 databaseReference.child(userId).child("emergencyContact").setValue(emergencyContact);
+                // Save to SharedPreferences
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("emergencyContact", emergencyContact);
+                editor.apply();  // Save changes asynchronously
             }
 
             // If a profile picture is taken, upload it
