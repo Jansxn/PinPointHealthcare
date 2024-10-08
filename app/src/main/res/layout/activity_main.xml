@@ -131,8 +131,10 @@
 
 
 
-            <include
-                layout="@layout/main_bmi"
+            <!-- Include the Videos Section -->
+            <androidx.fragment.app.FragmentContainerView
+                android:name="com.jason.myapplication.MainBMI"
+                android:id="@+id/fragmentBMI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"/>
