@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ import androidx.core.content.FileProvider;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -77,6 +80,23 @@ public class EditProfile extends AppCompatActivity {
 
         // Button to save the updated details
         saveButton.setOnClickListener(v -> saveUserDetails());
+
+        // Bottom Navigation setup
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.menu_home) {
+                startActivity(new Intent(EditProfile.this, MainActivity.class));
+                return true;
+            } else if (itemId == R.id.menu_assessment) {
+                startActivity(new Intent(EditProfile.this, Assessment.class));
+                return true;
+            } else if (itemId == R.id.menu_profile) {
+                startActivity(new Intent(EditProfile.this, Profile.class));
+                return true;
+            }
+            return false;
+        });
     }
 
     // Method to request camera permissions
@@ -166,22 +186,23 @@ public class EditProfile extends AppCompatActivity {
             String emergencyContact = emergencyContactEditText.getText().toString();
 
             // Update the profile details in the database
-            if (!TextUtils.isEmpty(username))
+            if (!TextUtils.isEmpty(username)) {
                 databaseReference.child(userId).child("username").setValue(username);
+            }
+
             if (!TextUtils.isEmpty(password)){
                 // Update the password in Firebase Authentication
-                user.updatePassword(password).addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(EditProfile.this, "Password updated successfully", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(EditProfile.this, "Failed to update password", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                user.updatePassword(password);
             }
-            if (!TextUtils.isEmpty(weight))
+
+            if (!TextUtils.isEmpty(weight)) {
                 databaseReference.child(userId).child("weight").setValue(weight);
-            if (!TextUtils.isEmpty(height))
+            }
+
+            if (!TextUtils.isEmpty(height)) {
                 databaseReference.child(userId).child("height").setValue(height);
+            }
+
             if (!TextUtils.isEmpty(emergencyContact)) {
                 databaseReference.child(userId).child("emergencyContact").setValue(emergencyContact);
             }
@@ -194,6 +215,9 @@ public class EditProfile extends AppCompatActivity {
             }
         }
     }
+
+
+
 
     // Method to upload profile picture to Firebase Storage
     private void uploadProfilePicture(String userId) {

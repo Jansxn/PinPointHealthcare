@@ -1,17 +1,30 @@
 package com.jason.myapplication;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Profile extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private static final int REQUEST_CALL_PERMISSION = 1;
+    private String emergencyContactNumber;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,28 +32,57 @@ public class Profile extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        //Edit Profile
+        // Get Emergency Contact from Firebase Database
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("Users")  // Correct the case here
+                .child(mAuth.getCurrentUser().getUid()).child("emergencyContact");
+
+        // Listen for changes to the emergency contact
+        databaseRef.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    emergencyContactNumber = dataSnapshot.getValue(String.class);
+                } else {
+                    Toast.makeText(Profile.this, "No emergency contact found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull com.google.firebase.database.DatabaseError databaseError) {
+                Toast.makeText(Profile.this, "Error fetching emergency contact", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        // Edit Profile
         Button editProfile = findViewById(R.id.editProfileButton);
         editProfile.setOnClickListener(v -> {
             Intent intent = new Intent(Profile.this, EditProfile.class);
             startActivity(intent);
         });
 
-        //Call Emergency Contact
-
-
-        //Assessment
-
-
-        //Logout
-        Button logoutButton = findViewById(R.id.logoutButton);
-        logoutButton.setOnClickListener(v -> {
-            logoutUser();
+        // Call Emergency Contact
+        Button emergencyContact = findViewById(R.id.callContactButton);
+        emergencyContact.setOnClickListener(v -> {
+            if (emergencyContactNumber != null && !emergencyContactNumber.isEmpty()) {
+                makeEmergencyCall();
+            } else {
+                Toast.makeText(Profile.this, "Emergency contact not available", Toast.LENGTH_SHORT).show();
+            }
         });
 
+        // Assessment
+        Button assessmentButton = findViewById(R.id.takeAssessmentButton);
+        assessmentButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Profile.this, Assessment.class);
+            startActivity(intent);
+        });
+
+        // Logout
+        Button logoutButton = findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(v -> logoutUser());
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        // Use addOnNavigationItemSelectedListener
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.menu_home) {
@@ -58,7 +100,33 @@ public class Profile extends AppCompatActivity {
         });
     }
 
-    void logoutUser(){
+    private void makeEmergencyCall() {
+        // Check if CALL_PHONE permission is granted
+        if (ContextCompat.checkSelfPermission(Profile.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // Request permission
+            ActivityCompat.requestPermissions(Profile.this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PERMISSION);
+        } else {
+            // Make the call
+            Intent callIntent = new Intent(Intent.ACTION_CALL);
+            callIntent.setData(Uri.parse("tel:" + emergencyContactNumber));
+            startActivity(callIntent);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);  // Call the superclass method
+
+        if (requestCode == REQUEST_CALL_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                makeEmergencyCall();  // Permission granted, proceed with the call
+            } else {
+                Toast.makeText(this, "Permission DENIED to make calls", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    void logoutUser() {
         // Sign out the user
         mAuth.signOut();
         // Redirect to the login screen
