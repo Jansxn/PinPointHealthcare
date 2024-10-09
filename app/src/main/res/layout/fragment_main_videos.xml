@@ -76,7 +76,8 @@
                     android:layout_height="80dp"
                     android:contentDescription="Video Thumbnail 1"
                     android:scaleType="centerCrop"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:src="@drawable/healthy_eating_tips"
+                    tools:srcCompat="@drawable/healthy_eating_tips" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -105,7 +106,8 @@
                     android:layout_height="80dp"
                     android:contentDescription="Video Thumbnail 2"
                     android:scaleType="centerCrop"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:src="@drawable/workout_routines"
+                    tools:srcCompat="@drawable/workout_routines" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -135,7 +137,8 @@
                     android:layout_height="80dp"
                     android:contentDescription="Video Thumbnail 3"
                     android:scaleType="centerCrop"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:src="@drawable/mental_health_tips"
+                    tools:srcCompat="@drawable/mental_health_tips" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -164,13 +167,14 @@
                     android:layout_height="80dp"
                     android:contentDescription="Video Thumbnail 3"
                     android:scaleType="centerCrop"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:src="@drawable/sleep_better_tips"
+                    tools:srcCompat="@drawable/sleep_better_tips" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Mental Health Tips"
+                    android:text="Sleep Better Tips"
                     android:textSize="14sp"
                     android:textColor="#6C8EFF"
                     android:textAlignment="center" />

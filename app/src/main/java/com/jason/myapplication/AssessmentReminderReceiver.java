@@ -25,8 +25,10 @@ public class AssessmentReminderReceiver extends BroadcastReceiver {
     private void showNotification(Context context) {
         // Create an intent that will be triggered when the user taps the notification
         Intent intent = new Intent(context, Assessment.class);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(
+//                context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent pendingIntent = PendingIntent.getActivity(
-                context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         // Create the notification
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 public class MainVideos extends Fragment {
@@ -33,23 +34,26 @@ public class MainVideos extends Fragment {
         LinearLayout videoThumbnailLayout4 = view.findViewById(R.id.vid4);
 
         // Set click listeners using the reusable function
-        setOnClickListenerForVideo(videoThumbnailLayout1, "https://www.example.com/healthy-eating-tips");
-        setOnClickListenerForVideo(videoThumbnailLayout2, "https://www.example.com/exercise-tips");
-        setOnClickListenerForVideo(videoThumbnailLayout3, "https://www.example.com/sleep-better-tips");
-        setOnClickListenerForVideo(videoThumbnailLayout4, "https://www.example.com/mental-health-tips");
+        setOnClickListenerForVideo(videoThumbnailLayout1, "https://www.youtube.com/watch?v=jwWpTAXu-Sg");
+        setOnClickListenerForVideo(videoThumbnailLayout2, "https://www.youtube.com/watch?v=eTxO5ZMxcsc");
+        setOnClickListenerForVideo(videoThumbnailLayout3, "https://www.youtube.com/watch?v=3QIfkeA6HBY");
+        setOnClickListenerForVideo(videoThumbnailLayout4, "https://www.youtube.com/watch?v=fk-_SwHhLLc");
 
+        Button viewMore = view.findViewById(R.id.viewMoreVideosButton);
+        viewMore.setOnClickListener(v -> {
+            // Create an intent to open a web browser
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/results?search_query=nutrition+experts"));
+            startActivity(intent);
+        });
         return view;
     }
 
     // Reusable function to set click listener for opening videos
     private void setOnClickListenerForVideo(LinearLayout layout, String url) {
-        layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create an intent to open a web browser
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent);
-            }
+        layout.setOnClickListener(v -> {
+            // Create an intent to open a web browser
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
         });
     }
 }

@@ -277,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
     private void setReminderAlarm(Calendar reminderDate) {
         Intent intent = new Intent(this, AssessmentReminderReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                this, (int) reminderDate.getTimeInMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                this, (int) reminderDate.getTimeInMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         if (alarmManager != null) {

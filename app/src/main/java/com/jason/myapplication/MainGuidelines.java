@@ -37,26 +37,11 @@ public class MainGuidelines extends Fragment {
         Button btnIndian = view.findViewById(R.id.btn_indian_guidelines);
 
         // Set click listeners for each button
-        btnVegetarian.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openGuidelines("https://www.example.com/vegetarian-dietary-guidelines");
-            }
-        });
+        btnVegetarian.setOnClickListener(v -> openGuidelines("https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/vegetarian-diet/art-20046446"));
 
-        btnVegan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openGuidelines("https://www.example.com/vegan-dietary-guidelines");
-            }
-        });
+        btnVegan.setOnClickListener(v -> openGuidelines("https://www.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/the-vegan-diet/"));
 
-        btnIndian.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openGuidelines("https://www.example.com/indian-dietary-guidelines");
-            }
-        });
+        btnIndian.setOnClickListener(v -> openGuidelines("https://main.icmr.nic.in/sites/default/files/upload_documents/DGI_07th_May_2024_fin.pdf"));
 
         return view;
     }
