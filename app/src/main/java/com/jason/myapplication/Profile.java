@@ -70,6 +70,7 @@ public class Profile extends AppCompatActivity {
         logoutButton.setOnClickListener(v -> logoutUser());
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.menu_profile);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.menu_home) {

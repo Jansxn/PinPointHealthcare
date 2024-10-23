@@ -51,6 +51,7 @@ public class Assessment extends AppCompatActivity {
 
         // Bottom Navigation setup
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.menu_assessment);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.menu_home) {

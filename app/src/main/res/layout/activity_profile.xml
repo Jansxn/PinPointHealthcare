@@ -108,8 +108,9 @@
     <!-- Fixed Bottom Navigation View -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
         android:background="#2260FF"
         android:gravity="center"
         android:textAlignment="center"
