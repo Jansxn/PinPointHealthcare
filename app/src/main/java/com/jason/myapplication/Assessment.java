@@ -65,6 +65,9 @@ public class Assessment extends AppCompatActivity {
             }
             return false;
         });
+
+        // Load initial values from the last assessment in the database
+        loadLastAssessment();
     }
 
     private void handleSubmit() {
@@ -172,4 +175,40 @@ public class Assessment extends AppCompatActivity {
         }
     }
 
+    private void loadLastAssessment() {
+        Cursor cursor = dbHelper.getLastAssessment();
+
+        if (cursor != null && cursor.moveToFirst()) {
+            // Retrieve the last assessment values
+            int weightIndex = cursor.getColumnIndex("weight");
+            int heightIndex = cursor.getColumnIndex("height");
+            int exerciseFrequencyIndex = cursor.getColumnIndex("exerciseFrequency");
+            int energyLevelsIndex = cursor.getColumnIndex("energyLevels");
+            int sleepQualityIndex = cursor.getColumnIndex("sleepQuality");
+
+            // Check if columns exist
+            if (weightIndex >= 0 && heightIndex >= 0 && exerciseFrequencyIndex >= 0 && energyLevelsIndex >= 0 && sleepQualityIndex >= 0) {
+                float lastWeight = cursor.getFloat(weightIndex);
+                float lastHeight = cursor.getFloat(heightIndex);
+                String lastExerciseFrequency = cursor.getString(exerciseFrequencyIndex);
+                int lastEnergyLevels = cursor.getInt(energyLevelsIndex);
+                int lastSleepQuality = cursor.getInt(sleepQualityIndex);
+
+                // Set the values of the input fields with the last assessment data
+                inputWeight.setText(String.valueOf(lastWeight));
+                inputHeight.setText(String.valueOf(lastHeight));
+                inputExerciseFrequency.setText(lastExerciseFrequency);
+                inputEnergyLevels.setProgress(lastEnergyLevels);
+                inputSleepQuality.setProgress(lastSleepQuality);
+            } else {
+                // If no data found, set defaults or handle it accordingly
+                Toast.makeText(this, "No previous assessment found.", Toast.LENGTH_SHORT).show();
+            }
+
+            cursor.close();
+        } else {
+            // If no previous assessment is found, you can set default values
+            Toast.makeText(this, "No previous assessment found.", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
