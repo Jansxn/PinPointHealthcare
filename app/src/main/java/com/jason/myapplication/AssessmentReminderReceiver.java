@@ -6,10 +6,13 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
+import android.Manifest;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 public class AssessmentReminderReceiver extends BroadcastReceiver {
 
@@ -23,26 +26,30 @@ public class AssessmentReminderReceiver extends BroadcastReceiver {
     }
 
     private void showNotification(Context context) {
-        // Create an intent that will be triggered when the user taps the notification
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
+                        != PackageManager.PERMISSION_GRANTED) {
+            // Exit if permission is not granted
+            return;
+        }
+
+        // The rest of your notification code
         Intent intent = new Intent(context, Assessment.class);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(
-//                context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
-        // Create the notification
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground) // Replace with your app's icon
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("Assessment Reminder")
                 .setContentText("It's time for your quarterly assessment!")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 
-        // Show the notification
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         notificationManager.notify(NOTIFICATION_ID, builder.build());
     }
+
 
     private void createNotificationChannel(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

@@ -75,6 +75,7 @@
         android:paddingRight="10dp"
         android:text="Your One Stop App for everything related to your Health!"
         android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/logIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />

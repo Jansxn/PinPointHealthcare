@@ -168,6 +168,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -199,6 +200,9 @@ public class MainActivity extends AppCompatActivity {
                         POST_NOTIFICATIONS_PERMISSION_CODE);
             }
         }
+
+        // Test alarm
+//        setTestAlarm(this);
 
         // Initialize Bottom Navigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -279,10 +283,31 @@ public class MainActivity extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 this, (int) reminderDate.getTimeInMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
+//        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        if (alarmManager != null) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) { // Android 12+
+            if (alarmManager.canScheduleExactAlarms()) {
+                // Schedule the alarm if permission is granted
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, reminderDate.getTimeInMillis(), pendingIntent);
+            } else {
+                // Handle the case where permission is not granted (show a message or request user to enable it)
+                Toast.makeText(this, "Please grant permission to schedule exact alarms", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            // For Android versions below 12, schedule without additional checks
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, reminderDate.getTimeInMillis(), pendingIntent);
         }
+    }
+
+    public void setTestAlarm(Context context) {
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context, AssessmentReminderReceiver.class);
+        PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        // Set the alarm to trigger in 1 minute for testing
+        long triggerTime = System.currentTimeMillis() + (60000/2); // 1 minute from now
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerTime, alarmIntent);
     }
 }
 
